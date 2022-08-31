@@ -9,13 +9,12 @@ export default function Header() {
 
     function handleChange(e) {
         setSearchInput(e.target.value);
-        console.log(searchInput, '<-- searchInput from handleChange');
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        const query = spellCheck(searchInput);
-        console.log(searchInput, '<--search input from submit');
+        const query = await spellCheck(searchInput);
+        console.log(query, '<-- query from handleSubmit')
     }
 
     return(
