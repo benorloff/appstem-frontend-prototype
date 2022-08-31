@@ -13,6 +13,7 @@ export default function Header() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        // Perform toLowerCase() and Regex here instead of spellCheck util?
         const query = await spellCheck(searchInput);
         console.log(query, '<-- query from handleSubmit')
     }
