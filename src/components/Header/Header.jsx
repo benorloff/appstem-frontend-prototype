@@ -1,7 +1,6 @@
 import react, { useState } from 'react';
 
 import { Input, Menu, Form, Button } from 'semantic-ui-react';
-import spellCheck from '../../utils/spellCheck';
 
 export default function Header() {
 
@@ -13,8 +12,15 @@ export default function Header() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        // Perform toLowerCase() and Regex here instead of spellCheck util?
-        const query = await spellCheck(searchInput);
+
+        // Simplify by converting to lower case
+        let query = searchInput.toLowerCase();
+
+        // Determine if non-alpha chars used, if so remove them
+        if (query.match(/[^a-z]/).length) {
+            query = query.replace(/[^a-z]/gi, '');
+        }
+
         console.log(query, '<-- query from handleSubmit')
     }
 
