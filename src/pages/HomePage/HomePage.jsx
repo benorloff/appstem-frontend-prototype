@@ -7,7 +7,7 @@ import Loading from "../../components/Loader/Loader";
 import Header from "../../components/Header/Header";
 import ImageList from "../../components/ImageList/ImageList";
 
-export default function HomePage() {
+export default function HomePage({ attemptSearch }) {
 
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ export default function HomePage() {
     if (error) {
         return (
             <>
-                <Header />
+                <Header attemptSearch={attemptSearch} />
                 <ErrorMessage error={error} />
             </>
         ) 
@@ -24,7 +24,7 @@ export default function HomePage() {
     if (loading) {
         return (
             <>
-                <Header />
+                <Header attemptSearch={attemptSearch} />
                 <Loading />
             </>
         ) 
@@ -32,7 +32,7 @@ export default function HomePage() {
 
     return (
         <>
-            <Header />
+            <Header attemptSearch={attemptSearch} />
             <ImageList />
         </>
     )

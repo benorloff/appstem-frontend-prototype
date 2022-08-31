@@ -20,12 +20,16 @@ function App() {
     setUser(null);
   }
 
+  function attemptSearch(query) {
+    console.log('hit attemptSearch in App');
+  }
+
   if (user) {
     return (
       <Routes>
         <Route
           path="/" 
-          element={<HomePage handleSignUpOrLogin={handleSignUpOrLogin} />} 
+          element={<HomePage attemptSearch={attemptSearch} handleSignUpOrLogin={handleSignUpOrLogin} />} 
         />
         <Route
           path="/login"
@@ -44,7 +48,7 @@ function App() {
     <Routes>
       <Route
           path="/" 
-          element={<HomePage handleSignUpOrLogin={handleSignUpOrLogin} />} 
+          element={<HomePage attemptSearch={attemptSearch} handleSignUpOrLogin={handleSignUpOrLogin} />} 
       />
       <Route
         path="/login"

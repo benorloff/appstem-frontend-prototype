@@ -1,8 +1,8 @@
 import react, { useState } from 'react';
 
-import { Input, Menu, Form, Button } from 'semantic-ui-react';
+import { Menu, Form } from 'semantic-ui-react';
 
-export default function Header() {
+export default function Header({ attemptSearch }) {
 
     const [searchInput, setSearchInput] = useState('');
 
@@ -20,6 +20,8 @@ export default function Header() {
         if (query.match(/[^a-z]/).length) {
             query = query.replace(/[^a-z]/gi, '');
         }
+
+        attemptSearch(query);
 
         console.log(query, '<-- query from handleSubmit')
     }
