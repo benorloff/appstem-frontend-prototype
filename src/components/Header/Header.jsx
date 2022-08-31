@@ -1,6 +1,7 @@
 import react, { useState } from 'react';
 
-import { Input, Menu } from 'semantic-ui-react';
+import { Input, Menu, Form, Button } from 'semantic-ui-react';
+import spellCheck from '../../utils/spellCheck';
 
 export default function Header() {
 
@@ -8,10 +9,13 @@ export default function Header() {
 
     function handleChange(e) {
         setSearchInput(e.target.value);
+        console.log(searchInput, '<-- searchInput from handleChange');
     }
 
     function handleSubmit(e) {
         e.preventDefault();
+        const query = spellCheck(searchInput);
+        console.log(searchInput, '<--search input from submit');
     }
 
     return(
@@ -20,15 +24,16 @@ export default function Header() {
                 Photo Finder
             </Menu.Item>
             <Menu.Item position='right'>
-                <Input
-                    action={{ type: 'submit', content: 'Search' }}
-                    name='searchInput'
-                    placeholder='Search terms...'
-                    value={searchInput}
-                    onChange={handleChange}
-                    onSubmit={handleSubmit}
-                    required
-                />
+                <Form onSubmit={handleSubmit}>
+                    <Form.Input
+                        action={{ type: 'submit', content: 'Search'}}
+                        name='searchInput'
+                        placeholder='Search terms...'
+                        value={searchInput}
+                        onChange={handleChange}
+                        required
+                    />
+                </Form>
             </Menu.Item>
         </Menu>
     )
