@@ -9,7 +9,7 @@ import userService from "../../utils/userService";
 function App() {
   const [user, setUser] = useState(userService.getUser()); 
 
-  const [searchResults, setSearchResults] = useState({});
+  const [searchResults, setSearchResults] = useState([]);
 
   function handleSignUpOrLogin() {
     setUser(userService.getUser()); 
@@ -22,6 +22,19 @@ function App() {
 
   function attemptSearch(query) {
     console.log('hit attemptSearch in App');
+    const axios = require('axios').default;
+
+    axios.get('/api/search', {
+      params: {
+        query: query
+      }
+    })
+      .then(function (response) {
+        console.log(response, '<--unsplash api response')
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
   }
 
   if (user) {

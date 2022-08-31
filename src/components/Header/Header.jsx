@@ -17,7 +17,7 @@ export default function Header({ attemptSearch }) {
         let query = searchInput.toLowerCase();
 
         // Determine if non-alpha chars used, if so remove them
-        if (query.match(/[^a-z]/).length) {
+        if (query.match(/[^a-z]/)) {
             query = query.replace(/[^a-z]/gi, '');
         }
 

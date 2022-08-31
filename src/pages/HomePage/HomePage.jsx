@@ -15,7 +15,7 @@ export default function HomePage({ attemptSearch, searchResults }) {
     if (error) {
         return (
             <>
-                <Header attemptSearch={attemptSearch} searchResults={searchResults} />
+                <Header attemptSearch={attemptSearch} />
                 <ErrorMessage error={error} />
             </>
         ) 
@@ -24,7 +24,7 @@ export default function HomePage({ attemptSearch, searchResults }) {
     if (loading) {
         return (
             <>
-                <Header attemptSearch={attemptSearch} searchResults={searchResults} />
+                <Header attemptSearch={attemptSearch} />
                 <Loading />
             </>
         ) 
@@ -32,8 +32,8 @@ export default function HomePage({ attemptSearch, searchResults }) {
 
     return (
         <>
-            <Header attemptSearch={attemptSearch} searchResults={searchResults} />
-            <ImageList />
+            <Header attemptSearch={attemptSearch} />
+            <ImageList searchResults={searchResults} />
         </>
     )
 
