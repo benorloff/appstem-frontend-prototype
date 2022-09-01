@@ -16,5 +16,9 @@ If it is not a valid english word, the server will attempt to find the closest v
 
 #### Assumptions
 
-The main assumption is that the user will enter a single word query. Future versions of the app could include support for multi-word queries. 
+The primary assumption is that the user will enter a single word query. Future versions of the app could include support for multi-word queries. 
+
+## Credits
+
+This app uses Semantic UI for frontend styling and react-medium-image-zoom for responsive overlays on image clicks.
 

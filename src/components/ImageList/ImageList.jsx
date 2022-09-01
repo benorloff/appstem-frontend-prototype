@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css'
 
 import { Container, Card, Image, Modal, Button } from 'semantic-ui-react';
 
 export default function ImageList({ searchResults }) {
-    const [open, setOpen] = useState(false);
-    const [modalData, setModalData] = useState({});
 
     return(
         <Container>
@@ -14,29 +15,18 @@ export default function ImageList({ searchResults }) {
                     return (
                         <Card 
                             key={result.id} 
-                            onClick={() => {
-                                setModalData(result);
-                                setOpen(true);
-                            }}
+                            // onClick={() => {
+                            //     setModalData(result);
+                            //     setOpen(true);
+                            // }}
                         >
-                            <Image src={result.urls.small}></Image>
+                            <Zoom>
+                                <Image src={result.urls.regular}></Image>
+                            </Zoom>
                         </Card>
                     )
                 })}
             </Card.Group>
-            {/* <Modal
-                onClose={() => setOpen(false)}
-                onOpen={() => setOpen(true)}
-                open={open}
-            >
-                <Modal.Header>Photo by <a href={modalData.user.links.html}>{modalData.user.name}</a></Modal.Header>
-                <Modal.Content image>
-                    <Image src={modalData.urls.regular} ></Image>
-                </Modal.Content>
-                <Modal.Actions>
-                    <Button onClick={() => setOpen(false)}>Close</Button>
-                </Modal.Actions>
-            </Modal> */}
         </Container>
     )
 }

@@ -10,14 +10,10 @@ async function getImages(req, res) {
     const query = req.query.query;
     let cleanedQuery = '';
 
-    console.log(query, '<-- query from getImages')
-
     // if query is not a valid english word from word list, find the closest match
     if (isValidWord(query) === false) {
-        console.log(query, '<-- IS NOT a valid word');
         cleanedQuery = findClosestMatch(query);
     } else {
-        console.log(query, '<-- IS a valid word');
         cleanedQuery = query;
     }
 
@@ -31,10 +27,8 @@ async function getImages(req, res) {
             }
         })
         const data = await response.data
-        console.log(response, '<-- unsplash response');
         res.status(201).json(data)
     } catch(err) {
-        console.log(err);
         res.status(400).json(err);
     }
 }
@@ -63,7 +57,6 @@ function findClosestMatch(query) {
 
     // Handle exception of no vowels, return empty match
     if ( !queryVowelIndices.length ) {
-        console.log('ERROR: this query has no vowels')
         return match;
     }
 
@@ -92,7 +85,6 @@ function findClosestMatch(query) {
         }
     }
 
-    console.log(match, '<-- match');
     return match;
     
 }
