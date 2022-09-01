@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React from 'react';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css'
 
-import { Container, Card, Image, Modal, Button } from 'semantic-ui-react';
+import { Container, Card, Image } from 'semantic-ui-react';
 
 export default function ImageList({ searchResults }) {
 
@@ -13,13 +12,7 @@ export default function ImageList({ searchResults }) {
             <Card.Group itemsPerRow={4} >
                 {searchResults.map((result) => {
                     return (
-                        <Card 
-                            key={result.id} 
-                            // onClick={() => {
-                            //     setModalData(result);
-                            //     setOpen(true);
-                            // }}
-                        >
+                        <Card key={result.id} >
                             <Zoom>
                                 <Image src={result.urls.regular}></Image>
                             </Zoom>
