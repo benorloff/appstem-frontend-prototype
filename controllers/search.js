@@ -26,7 +26,7 @@ async function getImages(req, res) {
             params: {
                 query: cleanedQuery,
                 page: 1,
-                per_page: 10,
+                per_page: 40,
                 client_id: UNSPLASH_ACCESS_KEY
             }
         })

@@ -10,6 +10,7 @@ function App() {
   const [user, setUser] = useState(userService.getUser()); 
 
   const [searchResults, setSearchResults] = useState([]);
+  const [searchMessage, setSearchMessage] = useState('');
 
   function handleSignUpOrLogin() {
     setUser(userService.getUser()); 
@@ -36,26 +37,6 @@ function App() {
       .catch(function (error) {
         console.log(error);
       })
-  }
-
-  if (user) {
-    return (
-      <Routes>
-        <Route
-          path="/" 
-          element={<HomePage attemptSearch={attemptSearch} searchResults={searchResults} handleSignUpOrLogin={handleSignUpOrLogin} />} 
-        />
-        <Route
-          path="/login"
-          element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-        />
-        <Route
-          path="/signup"
-          element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-        />
-        <Route path="/*" element={<Navigate to="/" />} />
-      </Routes>
-    );
   }
 
   return (

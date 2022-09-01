@@ -1,39 +1,20 @@
-## Setup 
+## Appstem Frontend Prototype
 
-1. Clone the repo
-2. Rename the folder to your Project, you can use the `mv` command like `mv mern-boilerplate yourprojectname`
-3. Delete the `.git` file, when you are in the root of the file, you can press `ls` and you should see a `.git` file, then go ahead and run `rm -rf .git`
+This is a simple web app that allows users to search for images by word. It utilizes the Unsplash API to retrieve images based on the user's search term.
 
+## How It Works
 
-#### Setup your git repo
+#### Search Input
 
-1. go to github and create your github and create a repo (Without a readme or liscense you can add that later!)
-2. Then you can run the following commands in the root of your project 
+The user enters a search term in the form located in the header. Upon submitting the query, it is stripped of all non-alpha characters on the client side using regex.
 
-```
-git init
-git add .
-git commit -m "first commit"
-git remote add origin git@git.generalassemb.ly:SEI-CC/test.git // this will be whatever your address will be, look at the address in the code github gives you!
-git push -u origin main
-```
+Once the query has been converted to lowercase and only alpha characters, it is then sent to a RESTful API endpoint /api/search.
 
-#### Setup the App
+From here, the server-side handles checking the validity of the query by referencing a word list. If it is a valid English word, the query will be added as a param to a GET request sent to the Unsplash /search/photos endpoint.
 
-```npm install```
+If it is not a valid english word, the server will attempt to find the closest valid match, by permutating all the vowels in the word and then returning the first valid match, if any.
 
-*DOTENV*
+#### Assumptions
 
-`touch .env`
+The main assumption is that the user will enter a single word query. Future versions of the app could include support for multi-word queries. 
 
-add your variables
-
-```
-DATABASE_URL=mongodb://localhost:27017/testagramV2
-BUCKET_NAME=catcollectorone
-SECRET=mysecretforjwt
-```
-
-The app is configured, to use those respective key names for the database, jwt secret and aws bucket, of course you'll have your own values
-# MERN-Boilerplate
-# appstem-frontend-prototype
