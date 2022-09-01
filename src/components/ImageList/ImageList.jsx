@@ -8,7 +8,7 @@ export default function ImageList({ searchResults }) {
 
     return(
         <Container>
-            <h1>{searchResults.length > 0 ? 'Search Results' : 'Enter your search term above'}</h1>
+            <h1>Search Results</h1>
             <Card.Group itemsPerRow={4} >
                 {searchResults.map((result) => {
                     return (
