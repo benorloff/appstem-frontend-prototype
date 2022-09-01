@@ -1,20 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Container, Card } from 'semantic-ui-react';
+import { Container, Card, Image, Modal, Button } from 'semantic-ui-react';
 
-import ImageCard from '../../components/ImageCard/ImageCard';
+export default function ImageList({ searchResults }) {
+    const [open, setOpen] = useState(false)
+    const [modalData, setModalData] = useState({})
 
-export default function ImageList({ results }) {
     return(
         <Container>
             <h1>Image List</h1>
             <Card.Group itemsPerRow={4} >
-                <Card color='red' image='/logo512.png' />
-                <Card color='red' image='/logo512.png' />
-                <Card color='red' image='/logo512.png' />
-                <Card color='red' image='/logo512.png' />
-
+                {searchResults.map((result) => {
+                    return (
+                        <Card 
+                            key={result.id} 
+                            onClick={() => {
+                                setModalData(result);
+                                setOpen(true);
+                            }}
+                        >
+                            <Image src={result.urls.small}></Image>
+                        </Card>
+                    )
+                })}
             </Card.Group>
+            <Modal
+                onClose={() => setOpen(false)}
+                onOpen={() => setOpen(true)}
+                open={open}
+            >
+                <Modal.Header>Photo by <a href={modalData.user.links.html}>{modalData.user.name}</a></Modal.Header>
+                <Modal.Content image>
+                    <Image src={modalData.urls.full} ></Image>
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button onClick={() => setOpen(false)}>Close</Button>
+                </Modal.Actions>
+            </Modal>
         </Container>
     )
 }

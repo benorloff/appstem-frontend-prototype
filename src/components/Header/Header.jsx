@@ -22,8 +22,8 @@ export default function Header({ attemptSearch }) {
         }
 
         attemptSearch(query);
+        setSearchInput('');
 
-        console.log(query, '<-- query from handleSubmit')
     }
 
     return(
