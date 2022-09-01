@@ -13,8 +13,8 @@ export default function Header({ attemptSearch }) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        // Simplify by converting to lower case
-        let query = searchInput.toLowerCase();
+        // Simplify by converting to lower case and trimming
+        let query = searchInput.toLowerCase().trim();
 
         // Determine if non-alpha chars used, if so remove them
         if (query.match(/[^a-z]/)) {

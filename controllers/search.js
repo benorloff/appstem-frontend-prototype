@@ -5,19 +5,23 @@ const wordArray = fs.readFileSync(wordListPath, 'utf8').split('\n');
 const BASE_URL = 'https://api.unsplash.com/';
 const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
 
-function getImages(req, res) {
+async function getImages(req, res) {
 
-    let query = req.query.query;
+    const query = req.query.query;
+    let cleanedQuery = '';
+
     console.log(query, '<-- query from getImages')
 
-    // if query is not an english word, find the closest match
-    if (wordArray.includes(query) === false) {
-
+    // if query is not a valid english word from word list, find the closest match
+    if (isValidWord(query) === false) {
+        console.log(query, '<-- IS NOT a valid word');
+        cleanedQuery = findClosestMatch(query);
+    } else {
+        console.log(query, '<-- IS a valid word');
+        cleanedQuery = query;
     }
 
     try {
-        console.log(req.body, '<--req.body from getImages');
-        console.log(req.params, '<--req.params from getImages');
         console.log(query, '<--query from getImages');
         res.status(201).json({ query: query })
     } catch(err) {
@@ -33,6 +37,24 @@ function isValidWord(str) {
 }
 
 function findClosestMatch(query) {
+    const vowels = ['a','e','i','o','u'];
+    const queryVowelIndices = [];
+    const candidates = [];
+    const tempWord = '';
+    let match = '';
+
+    // Store indices of vowels
+    query.forEach((char,i) => {
+        if ( vowels.includes(char) ) {
+            queryVowelIndices.push(i);
+        }
+    })
+
+    for ( let i = 0; i < query.length; i++ ) {
+        if ( !vowels.includes(query.charAt(i)) ) {
+            tempWord += query.charAt(i);
+        }
+    }
     
 }
 
