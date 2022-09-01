@@ -29,8 +29,9 @@ function App() {
         query: query
       }
     })
-      .then(function (response) {
+      .then(response => {
         console.log(response, '<--unsplash api response')
+        setSearchResults(response.data.results);
       })
       .catch(function (error) {
         console.log(error);
