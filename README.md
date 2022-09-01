@@ -14,6 +14,12 @@ From here, the server-side handles checking the validity of the query by referen
 
 If it is not a valid english word, the server will attempt to find the closest valid match, by permutating all the vowels in the word and then returning the first valid match, if any.
 
+#### Spellcheck
+
+This app accounts for certain spelling mistakes made by users. For example, "typawroter" will be corrected to "typewriter" and "ceku" will be corrected to "cake". 
+
+This is achieved by testing other vowel combinations until a match is found in the library of valid English words. 
+
 #### Assumptions
 
 The primary assumption is that the user will enter a single word query. Future versions of the app could include support for multi-word queries. 
